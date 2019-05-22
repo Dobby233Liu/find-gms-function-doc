@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>loading...</title>
+
+</head>
+<body>
+    <noscript>js pls</noscript>
+    Loading GameMaker doc
+<script>
+try{
+
+var $_GET = (function() {
+    var url = document.location.href;
+    var param = url.split("?");
+    var get = {};
+    if ("string" == typeof(param[1])) {
+        var pair = param[1].split("&");
+        for (var i in pair) {
+            var j = pair[i].split("=");
+            get[j[0]] = j[1]? j[1]: "";
+        }
+    }
+    return get;
+})();
+var isgms2 = "y" == $_GET["s2"];
+var gmslist = ".yoyogames.com/files/helpindexdat.js"
+function insertScript(u,l){
+document.body.appendChild((function(){
+var s = document.createElement("script")
+s.src=u;
+s.onload=l
+return s
+})())
+}
+if(isgms2){gmslist="https://docs2"+gmslist}else{gmslist="https://docs"+gmslist}
+
+
+insertScript(gmslist,function(){
+    var q = "index.html"
+    var fq = $_GET["q"]
+    for(i in HelpIndex){
+        if (HelpIndex[i][0].indexOf(fq)>-1){
+            
+            location="https://docs"+(isgms2?"2":"")+".yoyogames.com/"+HelpIndex[i][1]
+    }
+
+    }
+})
+}catch(e){
+    alert(e.trace)
+}
+
+</script>
+</body>
+</html>
